@@ -1,0 +1,151 @@
+📧 EMAILJS TEMPLATE - Copy this into EmailJS
+================================================
+
+TEMPLATE NAME: THERAPY EQUIPPED - New Order Notification
+
+SUBJECT:
+🛒 New Order from {{customer_name}}
+
+TEMPLATE BODY:
+================================================
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #000; color: white; padding: 20px; text-align: center; }
+        .section { background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .section-title { color: #000; font-weight: bold; font-size: 18px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px; }
+        .info-row { padding: 8px 0; }
+        .label { font-weight: bold; color: #666; }
+        .order-items { background-color: white; padding: 15px; border-radius: 5px; white-space: pre-line; }
+        .total-section { background-color: #000; color: white; padding: 15px; border-radius: 8px; }
+        .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🛒 NEW ORDER RECEIVED</h1>
+            <p>THERAPY EQUIPPED</p>
+        </div>
+
+        <!-- Order Date -->
+        <div class="section">
+            <div class="section-title">📅 ORDER DETAILS</div>
+            <div class="info-row">
+                <span class="label">Order Date:</span> {{order_date}}
+            </div>
+        </div>
+
+        <!-- Customer Information -->
+        <div class="section">
+            <div class="section-title">👤 CUSTOMER INFORMATION</div>
+            <div class="info-row">
+                <span class="label">Name:</span> {{customer_name}}
+            </div>
+            <div class="info-row">
+                <span class="label">Email:</span> {{customer_email}}
+            </div>
+            <div class="info-row">
+                <span class="label">Phone:</span> {{customer_phone}}
+            </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="section">
+            <div class="section-title">📦 SHIPPING ADDRESS</div>
+            <div class="info-row">
+                {{customer_address}}
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="section">
+            <div class="section-title">🛍️ ORDER ITEMS</div>
+            <div class="order-items">{{order_items}}</div>
+        </div>
+
+        <!-- Pricing Summary -->
+        <div class="total-section">
+            <div class="info-row">
+                <span class="label">Subtotal:</span> {{subtotal}}
+            </div>
+            <div class="info-row">
+                <span class="label">Shipping:</span> {{shipping}}
+            </div>
+            <div class="info-row" style="border-top: 1px solid white; margin-top: 10px; padding-top: 10px; font-size: 18px;">
+                <span class="label">TOTAL:</span> <strong>{{total}}</strong>
+            </div>
+        </div>
+
+        <!-- Action Required -->
+        <div class="section" style="background-color: #fff3cd; border-left: 4px solid #ffc107;">
+            <div class="section-title" style="color: #856404; border-color: #ffc107;">⚠️ ACTION REQUIRED</div>
+            <p style="color: #856404; margin: 0;">
+                <strong>Next Steps:</strong>
+            </p>
+            <ol style="color: #856404; margin: 10px 0;">
+                <li>Process payment in Stripe dashboard</li>
+                <li>Package items for shipment</li>
+                <li>Send tracking info to customer at <strong>{{customer_email}}</strong></li>
+            </ol>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>This is an automated notification from your THERAPY EQUIPPED store</p>
+            <p>therapyequipped@gmail.com</p>
+        </div>
+    </div>
+</body>
+</html>
+
+================================================
+
+TEMPLATE SETTINGS IN EMAILJS:
+================================================
+
+1. To Email: therapyequipped@gmail.com
+   (or use variable: {{to_email}})
+
+2. From Name: THERAPY EQUIPPED Store
+
+3. Reply To: {{customer_email}}
+   (This allows you to reply directly to the customer)
+
+================================================
+
+VARIABLES USED (automatically filled by system):
+================================================
+
+{{customer_name}}     - Full name of customer
+{{customer_email}}    - Customer's email address
+{{customer_phone}}    - Customer's phone (if collected)
+{{customer_address}}  - Full shipping address
+{{order_items}}       - List of ordered items with quantities
+{{subtotal}}          - Order subtotal
+{{shipping}}          - Shipping cost (or "FREE")
+{{total}}             - Total amount
+{{order_date}}        - Date and time of order
+{{to_email}}          - Recipient email (therapyequipped@gmail.com)
+
+================================================
+
+QUICK SETUP STEPS:
+================================================
+
+1. Go to EmailJS Dashboard
+2. Click "Email Templates"
+3. Click "Create New Template"
+4. Copy the HTML above into the "Content" field
+5. Copy the subject line into "Subject" field
+6. Set "To Email" to: therapyequipped@gmail.com
+7. Set "Reply To" to: {{customer_email}}
+8. Save template
+9. Copy Template ID to .env file
+
+================================================
