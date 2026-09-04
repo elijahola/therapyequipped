@@ -69,7 +69,7 @@ export const Cart = () => {
             <div className="space-y-3 mb-6">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="font-semibold">{formatCurrency(subtotal)}</span>
+                <span className="font-semibold">{formatCurrency(subtotal + bundleSavings)}</span>
               </div>
               {bundleSavings > 0 && (
                 <div className="flex justify-between text-green-700">
