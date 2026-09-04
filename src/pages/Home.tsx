@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SocialProof } from '../components/home/SocialProof';
+import { CommunityGrid, StatStrip } from '../components/home/Community';
 import { useState, useEffect } from 'react';
 import { Flame, Zap, Dumbbell, Target } from 'lucide-react';
 import { Button } from '../components/common/Button';
@@ -90,6 +91,9 @@ export const Home = () => {
 
       {/* Social proof: the brand's own footage */}
       <SocialProof />
+
+      {/* Why recovery matters — the brand's own stat cards */}
+      <StatStrip />
 
       {/* Why Get EQUIPPED Section */}
       <section className="py-16 md:py-24 bg-gray-50">
@@ -226,6 +230,8 @@ export const Home = () => {
       </section>
 
       {/* Guarantees Banner */}
+      <CommunityGrid />
+
       <section className="py-16 bg-brand-black text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
