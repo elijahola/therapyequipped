@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SocialProof } from '../components/home/SocialProof';
 import { useState, useEffect } from 'react';
 import { Flame, Zap, Dumbbell, Target } from 'lucide-react';
 import { Button } from '../components/common/Button';
@@ -86,6 +87,9 @@ export const Home = () => {
           ))}
         </div>
       </section>
+
+      {/* Social proof: the brand's own footage */}
+      <SocialProof />
 
       {/* Why Get EQUIPPED Section */}
       <section className="py-16 md:py-24 bg-gray-50">
