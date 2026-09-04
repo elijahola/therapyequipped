@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { CartItem, ColorName } from '../types/index.js';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import {
+  calculateBundleSavings,
   calculateSubtotal,
   calculateShipping,
   calculateTotal,
@@ -17,6 +18,7 @@ interface CartContextType {
   updateQuantity: (productId: string, quantity: number, color?: ColorName) => void;
   clearCart: () => void;
   subtotal: number;
+  bundleSavings: number;
   shipping: number;
   total: number;
   itemCount: number;
@@ -102,6 +104,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   };
 
   const subtotal = calculateSubtotal(items);
+  const bundleSavings = calculateBundleSavings(items);
   const shipping = calculateShipping(items);
   const total = calculateTotal(items);
   const itemCount = getCartItemCount(items);
@@ -114,6 +117,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     updateQuantity,
     clearCart,
     subtotal,
+    bundleSavings,
     shipping,
     total,
     itemCount,

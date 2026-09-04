@@ -1,5 +1,8 @@
 import type { CartItem } from '../types/index.js';
 import { getProductById } from '../data/products.js';
+import { effectiveUnitPrice, calculateBundleSavings } from './bundles.js';
+
+export { calculateBundleSavings };
 
 export const FREE_SHIPPING_THRESHOLD = 30;
 
@@ -10,7 +13,8 @@ export const calculateSubtotal = (items: CartItem[]): number => {
   return items.reduce((total, item) => {
     const product = getProductById(item.productId);
     if (!product) return total;
-    return total + product.price * item.quantity;
+    // Bundle-aware: accessories ride at 15% off when a TEgun is in the cart.
+    return total + effectiveUnitPrice(items, item.productId) * item.quantity;
   }, 0);
 };
 

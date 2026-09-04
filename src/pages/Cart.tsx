@@ -4,9 +4,11 @@ import { Button } from '../components/common/Button';
 import { CartItem } from '../components/cart/CartItem';
 import { formatCurrency } from '../utils/formatting';
 import { FREE_SHIPPING_THRESHOLD } from '../utils/calculations';
+import { BUNDLE_DISCOUNT_PCT } from '../utils/bundles';
+import { PairsWith } from '../components/product/PairsWith';
 
 export const Cart = () => {
-  const { items, subtotal, shipping, total, freeShippingRemaining } = useCart();
+  const { items, subtotal, bundleSavings, shipping, total, freeShippingRemaining } = useCart();
 
   if (items.length === 0) {
     return (
@@ -54,6 +56,9 @@ export const Cart = () => {
               <CartItem key={`${item.productId}-${item.selectedColor || 'default'}-${index}`} item={item} />
             ))}
           </div>
+
+          {/* Cross-sell: complete the kit from right here */}
+          <PairsWith productId={items[0].productId} />
         </div>
 
         {/* Order Summary */}
@@ -66,6 +71,12 @@ export const Cart = () => {
                 <span className="text-gray-600">Subtotal</span>
                 <span className="font-semibold">{formatCurrency(subtotal)}</span>
               </div>
+              {bundleSavings > 0 && (
+                <div className="flex justify-between text-green-700">
+                  <span>Bundle savings ({BUNDLE_DISCOUNT_PCT}% off accessories)</span>
+                  <span className="font-semibold">-{formatCurrency(bundleSavings)}</span>
+                </div>
+              )}
               <div className="flex justify-between">
                 <span className="text-gray-600">Shipping</span>
                 <span className="font-semibold">

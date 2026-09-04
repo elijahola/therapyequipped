@@ -5,6 +5,7 @@ import { Button } from '../components/common/Button';
 import { Input } from '../components/common/Input';
 import { formatCurrency } from '../utils/formatting';
 import { getProductById } from '../data/products';
+import { effectiveUnitPrice } from '../utils/bundles';
 import { sendOrderNotification } from '../services/emailService';
 import { useToast } from '../context/ToastContext';
 import { track } from '../lib/analytics';
@@ -109,7 +110,7 @@ export const Checkout = () => {
           productName: product?.name || 'Unknown Product',
           quantity: item.quantity,
           selectedColor: item.selectedColor,
-          unitPrice: product?.price || 0,
+          unitPrice: effectiveUnitPrice(items, item.productId),
           shippingCost: product?.shippingCost || 0,
         };
       });

@@ -3,12 +3,15 @@ import type { CartItem as CartItemType } from '../../types/index.js';
 import { getProductById } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 import { formatCurrency } from '../../utils/formatting';
+import { effectiveUnitPrice } from '../../utils/bundles';
 
 interface CartItemProps {
   item: CartItemType;
 }
 
 export const CartItem = ({ item }: CartItemProps) => {
+  const { items } = useCart();
+  const unit = effectiveUnitPrice(items, item.productId);
   const { updateQuantity, removeItem } = useCart();
   const product = getProductById(item.productId);
 
@@ -48,7 +51,7 @@ export const CartItem = ({ item }: CartItemProps) => {
             {item.selectedColor && (
               <p className="text-sm text-gray-600">Color: {item.selectedColor}</p>
             )}
-            <p className="text-sm text-gray-600 mt-1">{formatCurrency(product.price)} each</p>
+            <p className="text-sm text-gray-600 mt-1">{formatCurrency(unit)} each</p>
           </div>
 
           {/* Remove Button */}
@@ -84,7 +87,7 @@ export const CartItem = ({ item }: CartItemProps) => {
           </div>
 
           {/* Total Price */}
-          <p className="text-xl font-bold">{formatCurrency(product.price * item.quantity)}</p>
+          <p className="text-xl font-bold">{formatCurrency(unit * item.quantity)}</p>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { track } from '../lib/analytics';
 import { ProductGallery } from '../components/product/ProductGallery';
 import { ColorSelector } from '../components/product/ColorSelector';
 import { ProductCard } from '../components/product/ProductCard';
+import { PairsWith } from '../components/product/PairsWith';
 import { Button } from '../components/common/Button';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
@@ -182,6 +183,8 @@ export const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      <PairsWith productId={product.id} />
 
       {/* Related Products */}
       <div className="mt-16">
