@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { trackPageview } from './lib/analytics';
 import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
 import { PageLayout } from './components/layout/PageLayout';
@@ -13,10 +15,20 @@ import { About } from './pages/About';
 import { Testimonials } from './pages/Testimonials';
 import { NotFound } from './pages/NotFound';
 
+/** Fires a PostHog $pageview on every SPA route change. */
+const PageviewTracker = () => {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageview();
+  }, [location.pathname]);
+  return null;
+};
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <PageviewTracker />
       <ToastProvider>
         <CartProvider>
           <PageLayout>

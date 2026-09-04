@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Button } from '../components/common/Button';
@@ -7,11 +7,25 @@ import { formatCurrency } from '../utils/formatting';
 import { getProductById } from '../data/products';
 import { sendOrderNotification } from '../services/emailService';
 import { useToast } from '../context/ToastContext';
+import { track } from '../lib/analytics';
 
 export const Checkout = () => {
   const { items, subtotal, shipping, total } = useCart();
   const { showToast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Funnel: reached checkout with something in the cart. Deliberately fires
+  // once per visit to this page, not per keystroke.
+  useEffect(() => {
+    if (items.length > 0) {
+      track('checkout_started', {
+        items: items.length,
+        subtotal,
+        total,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -62,6 +76,13 @@ export const Checkout = () => {
     }
 
     setIsProcessing(true);
+    // Funnel: form validated and submitted — the moment of purchase intent.
+    track('order_placed', {
+      items: items.length,
+      subtotal,
+      shipping,
+      total,
+    });
 
     try {
       // Get API URL from environment

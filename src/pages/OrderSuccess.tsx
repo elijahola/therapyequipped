@@ -4,6 +4,7 @@ import { CheckCircle } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { useCart } from '../context/CartContext';
 import { sendCustomerReceipt } from '../services/emailService';
+import { track } from '../lib/analytics';
 
 export const OrderSuccess = () => {
   const { clearCart } = useCart();
@@ -18,6 +19,15 @@ export const OrderSuccess = () => {
 
     if (checkoutInfoStr && !emailSent) {
       const checkoutInfo = JSON.parse(checkoutInfoStr);
+
+      // Funnel end: confirmed purchase. Guarded by the same sessionStorage
+      // gate as the receipt email, so a refresh never double-counts revenue.
+      track('purchase_completed', {
+        items: checkoutInfo.items?.length,
+        subtotal: checkoutInfo.subtotal,
+        shipping: checkoutInfo.shipping,
+        total: checkoutInfo.total,
+      });
 
       // Send customer receipt email
       sendCustomerReceipt({

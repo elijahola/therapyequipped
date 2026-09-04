@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ChevronRight, Minus, Plus } from 'lucide-react';
 import { getProductBySlug, products } from '../data/products';
+import { track } from '../lib/analytics';
 import { ProductGallery } from '../components/product/ProductGallery';
 import { ColorSelector } from '../components/product/ColorSelector';
 import { ProductCard } from '../components/product/ProductCard';
@@ -23,6 +24,17 @@ export const ProductDetail = () => {
   const { addItem } = useCart();
   const { showToast } = useToast();
 
+  // Funnel: someone landed on this product page.
+  useEffect(() => {
+    if (product) {
+      track('product_viewed', {
+        product_id: product.id,
+        product_name: product.name,
+        price: product.price,
+      });
+    }
+  }, [product]);
+
   if (!product) {
     return <Navigate to="/shop" replace />;
   }
@@ -33,6 +45,14 @@ export const ProductDetail = () => {
 
   const handleAddToCart = () => {
     addItem(product.id, quantity, selectedColor);
+    track('add_to_cart', {
+      product_id: product.id,
+      product_name: product.name,
+      price: product.price,
+      quantity,
+      color: selectedColor,
+      value: product.price * quantity,
+    });
     showToast(`Added ${quantity}x ${product.name} to cart!`, 'success');
   };
 
