@@ -31,8 +31,14 @@ export const productStories: Record<string, ProductStory> = {
       {
         title: 'Stays on through the sweat',
         body: 'Oil-proof, sweat-resistant adhesive holds through a full night or a full game \u2014 and the hypoallergenic material peels off clean in the morning. Sixty individually wrapped strips per box; two boxes ship free.',
-        image: '/images/community/recover.jpg',
-        imageAlt: 'Recover, recover, recover',
+        image: '/images/products/breathing-strips/gym.png',
+        imageAlt: 'Oil and sweat proof \u2014 athlete wearing the strip mid-workout',
+      },
+      {
+        title: 'On in 30 seconds, off with warm water',
+        body: 'Dry your face and clean your nose, peel the protective film, place the strip across the bridge of your nose and press for 30 seconds. When you are done, it removes easily with soap and warm water. Sleep, gym, trail \u2014 same strip.',
+        image: '/images/products/breathing-strips/usage.png',
+        imageAlt: 'Usage steps: clean and dry, peel film and apply, press 30 seconds, remove with soap and water',
       },
     ],
   },
