@@ -177,36 +177,29 @@ export const products: Product[] = [
     category: 'board',
   },
   {
-    id: 'breathing-strips',
-    name: 'Breathing Strips — 44 Pack',
+id: 'breathing-strips',
+    name: 'Breathing Strips — 60 Pack (Black)',
     slug: 'breathing-strips',
-    price: 10.99,
-    // $4.50 single-box shipping is deliberate: 3 boxes crosses the $30
-    // free-shipping threshold, which is the bundle nudge doing its job.
+    price: 15.99,
+    // $4.50 single-box shipping: two boxes ($31.98) crosses the $30
+    // free-shipping threshold — the bundle nudge.
     shippingCost: 4.5,
-    description: 'Breathe better anytime, anywhere. Extra-strength, drug-free nasal strips with flexible spring-like bands that open your nasal passages — for sleep, exercise, and travel. 44 clear strips per box: six weeks of better nights.',
+    description: 'Extra-strength, drug-free nasal strips with a reinforced triple elastic band that physically opens your nasal passages — 50% stronger lift for easier breathing during sleep, exercise, and travel. Oil-proof, sweat-resistant adhesive stays put all night; hypoallergenic and easy to remove. 60 black strips per box — two months of better nights.',
     features: [
-      'Three elastic bands per strip — 45% stronger lift, 18% better hold',
-      'Extra strength — made for exercise and travel',
+      'Reinforced triple elastic band — 50% stronger lift',
+      'Oil-proof & sweat-resistant adhesive stays on through sleep and workouts',
       'Drug free: nothing to take, nothing inside your nose',
-      'Clear and discreet — barely visible on',
-      'Easy removal, designed for sensitive skin',
-      'One size fits most · 44 strips per box',
+      'Hypoallergenic, skin-friendly material with easy removal',
+      'Universal fit (2.36 × 0.9 in) — spring-like bands flex with each breath',
+      '60 strips per box — a two-month supply',
     ],
-    whatsIncluded: ['44 individually wrapped clear nasal strips'],
+    whatsIncluded: ['60 individually wrapped black nasal strips'],
     hasColors: false,
     images: {
-      main: `/images/products/breathing-strips/main-clear.jpg`,
-      lifestyle: [
-        `/images/products/breathing-strips/strength.jpg`,
-        `/images/products/breathing-strips/tan.jpg`,
-      ],
-      details: [
-        `/images/products/breathing-strips/compare.jpg`,
-        `/images/products/breathing-strips/how-to.jpg`,
-        `/images/products/breathing-strips/size.jpg`,
-      ],
-      whatsIncluded: `/images/products/breathing-strips/main-clear.jpg`,
+      main: `/images/products/breathing-strips/main-black-60.png`,
+      lifestyle: [],
+      details: [],
+      whatsIncluded: `/images/products/breathing-strips/main-black-60.png`,
     },
     category: 'breathing',
   },
