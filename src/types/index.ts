@@ -1,5 +1,5 @@
 // Product Types
-export type ProductCategory = 'massage-gun' | 'roller' | 'board';
+export type ProductCategory = 'massage-gun' | 'roller' | 'board' | 'breathing';
 
 export type ColorName = 'Green Goblin' | 'Flash' | 'Venom';
 

@@ -14,10 +14,28 @@ export interface ProductStory {
   kicker: string;
   headline: string;
   blocks: StoryBlock[];
-  quote: { text: string; name: string; product: string };
+  quote?: { text: string; name: string; product: string };
 }
 
 export const productStories: Record<string, ProductStory> = {
+  'breathing-strips': {
+    kicker: 'BREATHE BETTER, RECOVER BETTER',
+    headline: 'The cheapest performance upgrade you\u2019ll ever make',
+    blocks: [
+      {
+        title: 'Open airways, all night and all game',
+        body: 'A gentle spring lifts your nasal passages open from the outside \u2014 more air in through the nose, less mouth-breathing, quieter nights, and easier breathing when the intensity climbs. No drugs, nothing inside your nose, nothing to charge.',
+        image: '/images/community/recover.jpg',
+        imageAlt: 'Recover, recover, recover',
+      },
+      {
+        title: 'A month of nights in every box',
+        body: 'Thirty individually wrapped strips. Stick one on before bed or before the game, peel it off after \u2014 the sweat-resistant adhesive stays put until you say so. Three boxes ships free.',
+        image: '/images/hero/hero0.jpg',
+        imageAlt: 'Athlete ready for the game',
+      },
+    ],
+  },
   'tegun-lite': {
     kicker: 'BUILT FOR THE GO',
     headline: 'Recovery that fits your life, not the other way around',

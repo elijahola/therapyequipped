@@ -176,6 +176,33 @@ export const products: Product[] = [
     },
     category: 'board',
   },
+  {
+    id: 'breathing-strips',
+    name: 'Breathing Strips — 30 Pack',
+    slug: 'breathing-strips',
+    price: 12.99,
+    // $4.50 single-box shipping is deliberate: 3 boxes crosses the $30
+    // free-shipping threshold, which is the bundle nudge doing its job.
+    shippingCost: 4.5,
+    description: 'Drug-free nasal strips that gently lift your nasal passages open for easier breathing during sleep, training, and game day. Skin-toned, quiet, and made to stay on through the night. 30 strips per box — a full month of better breathing.',
+    features: [
+      'Opens nasal passages instantly — no drugs, no devices',
+      'Sweat-resistant adhesive holds all night and through workouts',
+      'Skin-toned and low profile — barely visible on',
+      'One size fits most, for men and women',
+      '30 strips per box: one month of nights',
+      'Latex-free adhesive, gentle on skin',
+    ],
+    whatsIncluded: ['30 individually wrapped nasal strips'],
+    hasColors: false,
+    images: {
+      main: `/images/products/breathing-strips/main.png`,
+      lifestyle: [],
+      details: [],
+      whatsIncluded: `/images/products/breathing-strips/main.png`,
+    },
+    category: 'breathing',
+  },
 ];
 
 // Helper functions

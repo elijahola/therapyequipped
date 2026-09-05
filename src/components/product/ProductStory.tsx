@@ -38,6 +38,7 @@ export const ProductStory = ({ productId }: { productId: string }) => {
         ))}
       </div>
 
+      {story.quote && (
       <figure className="mt-14 mx-auto max-w-2xl rounded-2xl bg-gray-50 p-8 text-center">
         <div className="text-yellow-400 text-xl mb-3" aria-label="5 star review">★★★★★</div>
         <blockquote className="text-xl font-medium leading-relaxed">
@@ -47,6 +48,7 @@ export const ProductStory = ({ productId }: { productId: string }) => {
           {story.quote.name} · verified {story.quote.product} owner
         </figcaption>
       </figure>
+      )}
     </div>
   );
 };
