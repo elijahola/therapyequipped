@@ -12,6 +12,12 @@ import { track } from '../lib/analytics';
 
 export const Checkout = () => {
   const { items, subtotal, shipping, total } = useCart();
+  // Standard = the cart's computed shipping (free over $30). Express is a
+  // flat-rate 2-day UPS/FedEx upgrade, always charged.
+  const EXPRESS_RATE = 14.99;
+  const [shipMethod, setShipMethod] = useState<'standard' | 'express'>('standard');
+  const chosenShipping = shipMethod === 'express' ? EXPRESS_RATE : shipping;
+  const chosenTotal = subtotal + chosenShipping;
   const { showToast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -93,8 +99,8 @@ export const Checkout = () => {
       const emailSent = await sendOrderNotification({
         items,
         subtotal,
-        shipping,
-        total,
+        shipping: chosenShipping,
+        total: chosenTotal,
         customerInfo: formData,
       });
 
@@ -103,7 +109,7 @@ export const Checkout = () => {
       }
 
       // Prepare items with product details for Stripe
-      const stripeItems = items.map((item) => {
+      const stripeItems = items.map((item, itemIndex) => {
         const product = getProductById(item.productId);
         return {
           productId: item.productId,
@@ -111,7 +117,7 @@ export const Checkout = () => {
           quantity: item.quantity,
           selectedColor: item.selectedColor,
           unitPrice: effectiveUnitPrice(items, item.productId),
-          shippingCost: product?.shippingCost || 0,
+          shippingCost: itemIndex === 0 ? chosenShipping : 0,
         };
       });
 
@@ -140,8 +146,8 @@ export const Checkout = () => {
         customerInfo: formData,
         items,
         subtotal,
-        shipping,
-        total,
+        shipping: chosenShipping,
+        total: chosenTotal,
       }));
 
       // Redirect to Stripe Checkout
@@ -272,7 +278,7 @@ export const Checkout = () => {
                 fullWidth
                 loading={isProcessing}
               >
-                {isProcessing ? 'Processing Order...' : `Place Order - ${formatCurrency(total)}`}
+                {isProcessing ? 'Processing Order...' : `Place Order - ${formatCurrency(chosenTotal)}`}
               </Button>
 
               <p className="text-xs text-gray-600 text-center mt-4">
@@ -322,8 +328,43 @@ export const Checkout = () => {
               })}
             </div>
 
+            {/* Delivery speed */}
+            <div className="pt-6 border-t border-gray-200 mb-4">
+              <p className="font-semibold mb-2">Delivery speed</p>
+              <label className="flex items-center justify-between gap-2 rounded-lg border p-3 mb-2 cursor-pointer has-[:checked]:border-brand-black">
+                <span className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="shipMethod"
+                    checked={shipMethod === 'standard'}
+                    onChange={() => setShipMethod('standard')}
+                  />
+                  <span>
+                    <span className="font-medium">Standard</span>
+                    <span className="block text-xs text-gray-500">2–7 business days</span>
+                  </span>
+                </span>
+                <span className="text-sm font-semibold">{shipping === 0 ? 'Free' : formatCurrency(shipping)}</span>
+              </label>
+              <label className="flex items-center justify-between gap-2 rounded-lg border p-3 cursor-pointer has-[:checked]:border-brand-black">
+                <span className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="shipMethod"
+                    checked={shipMethod === 'express'}
+                    onChange={() => setShipMethod('express')}
+                  />
+                  <span>
+                    <span className="font-medium">Express 2-day</span>
+                    <span className="block text-xs text-gray-500">UPS / FedEx</span>
+                  </span>
+                </span>
+                <span className="text-sm font-semibold">{formatCurrency(EXPRESS_RATE)}</span>
+              </label>
+            </div>
+
             {/* Totals */}
-            <div className="space-y-3 pt-6 border-t border-gray-200">
+            <div className="space-y-3 border-t border-gray-200 pt-4">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
                 <span className="font-semibold">{formatCurrency(subtotal)}</span>
@@ -331,12 +372,12 @@ export const Checkout = () => {
               <div className="flex justify-between">
                 <span className="text-gray-600">Shipping</span>
                 <span className="font-semibold">
-                  {shipping === 0 ? 'Free' : formatCurrency(shipping)}
+                  {chosenShipping === 0 ? 'Free' : formatCurrency(chosenShipping)}
                 </span>
               </div>
               <div className="border-t pt-3 flex justify-between text-lg">
                 <span className="font-bold">Total</span>
-                <span className="font-bold">{formatCurrency(total)}</span>
+                <span className="font-bold">{formatCurrency(chosenTotal)}</span>
               </div>
             </div>
 

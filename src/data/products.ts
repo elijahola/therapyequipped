@@ -180,7 +180,7 @@ export const products: Product[] = [
     id: 'breathing-strips',
     name: 'Breathing Strips — 44 Pack',
     slug: 'breathing-strips',
-    price: 12.99,
+    price: 10.99,
     // $4.50 single-box shipping is deliberate: 3 boxes crosses the $30
     // free-shipping threshold, which is the bundle nudge doing its job.
     shippingCost: 4.5,

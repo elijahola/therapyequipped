@@ -109,6 +109,9 @@ export const ProductDetail = () => {
           </div>
 
           {/* Description */}
+          <p className="mb-3 text-sm font-medium text-gray-700">
+            📦 Get it in <span className="font-bold">2–7 business days</span> · 2-day express (UPS/FedEx) available at checkout
+          </p>
           <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
 
           {/* Color Selector */}
