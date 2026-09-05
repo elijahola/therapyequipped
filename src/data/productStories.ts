@@ -24,15 +24,15 @@ export const productStories: Record<string, ProductStory> = {
     blocks: [
       {
         title: 'Open airways, all night and all game',
-        body: 'Flexible, spring-like bands lift your nasal passages open from the outside \u2014 more air through the nose during sleep, exercise, and travel. Drug free: nothing to take, nothing inside your nose, nothing to charge.',
-        image: '/images/community/recover.jpg',
-        imageAlt: 'Recover, recover, recover',
+        body: 'Three elastic bands per strip lift your nasal passages open from the outside \u2014 45% stronger lift and 24% more coverage than ordinary two-band strips \u2014 more air through the nose during sleep, exercise, and travel. Drug free: nothing to take, nothing inside your nose, nothing to charge.',
+        image: '/images/products/breathing-strips/compare.jpg',
+        imageAlt: 'Three adhesive bands and wider coverage versus ordinary two-band strips',
       },
       {
         title: 'Six weeks of nights in every box',
         body: 'Forty-four strips of breathable, form-fitting material. Stick one on before bed or before the game \u2014 extra-strength hold with easy removal that\u2019s kind to sensitive skin. Three boxes ship free.',
-        image: '/images/hero/hero0.jpg',
-        imageAlt: 'Athlete ready for the game',
+        image: '/images/products/breathing-strips/how-to.jpg',
+        imageAlt: 'How to apply: clean skin, remove liner, place on the bridge of the nose, press 15 seconds',
       },
     ],
   },

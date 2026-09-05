@@ -186,7 +186,7 @@ export const products: Product[] = [
     shippingCost: 4.5,
     description: 'Breathe better anytime, anywhere. Extra-strength, drug-free nasal strips with flexible spring-like bands that open your nasal passages — for sleep, exercise, and travel. 44 clear strips per box: six weeks of better nights.',
     features: [
-      'Flexible, spring-like bands open nasal passages',
+      'Three elastic bands per strip — 45% stronger lift, 18% better hold',
       'Extra strength — made for exercise and travel',
       'Drug free: nothing to take, nothing inside your nose',
       'Clear and discreet — barely visible on',
@@ -197,8 +197,15 @@ export const products: Product[] = [
     hasColors: false,
     images: {
       main: `/images/products/breathing-strips/main-clear.jpg`,
-      lifestyle: [`/images/products/breathing-strips/tan.jpg`],
-      details: [],
+      lifestyle: [
+        `/images/products/breathing-strips/strength.jpg`,
+        `/images/products/breathing-strips/tan.jpg`,
+      ],
+      details: [
+        `/images/products/breathing-strips/compare.jpg`,
+        `/images/products/breathing-strips/how-to.jpg`,
+        `/images/products/breathing-strips/size.jpg`,
+      ],
       whatsIncluded: `/images/products/breathing-strips/main-clear.jpg`,
     },
     category: 'breathing',
