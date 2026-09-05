@@ -29,8 +29,8 @@ export const productStories: Record<string, ProductStory> = {
         imageAlt: 'Recover, recover, recover',
       },
       {
-        title: 'A month of nights in every box',
-        body: 'Thirty individually wrapped strips. Stick one on before bed or before the game, peel it off after \u2014 the sweat-resistant adhesive stays put until you say so. Three boxes ships free.',
+        title: 'Six weeks of nights in every box',
+        body: 'Forty-four individually wrapped strips. Stick one on before bed or before the game, peel it off after \u2014 the sweat-resistant adhesive stays put until you say so. Three boxes ships free.',
         image: '/images/hero/hero0.jpg',
         imageAlt: 'Athlete ready for the game',
       },
