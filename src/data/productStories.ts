@@ -24,13 +24,13 @@ export const productStories: Record<string, ProductStory> = {
     blocks: [
       {
         title: 'Open airways, all night and all game',
-        body: 'A gentle spring lifts your nasal passages open from the outside \u2014 more air in through the nose, less mouth-breathing, quieter nights, and easier breathing when the intensity climbs. No drugs, nothing inside your nose, nothing to charge.',
+        body: 'Flexible, spring-like bands lift your nasal passages open from the outside \u2014 more air through the nose during sleep, exercise, and travel. Drug free: nothing to take, nothing inside your nose, nothing to charge.',
         image: '/images/community/recover.jpg',
         imageAlt: 'Recover, recover, recover',
       },
       {
         title: 'Six weeks of nights in every box',
-        body: 'Forty-four individually wrapped strips. Stick one on before bed or before the game, peel it off after \u2014 the sweat-resistant adhesive stays put until you say so. Three boxes ships free.',
+        body: 'Forty-four strips of breathable, form-fitting material. Stick one on before bed or before the game \u2014 extra-strength hold with easy removal that\u2019s kind to sensitive skin. Three boxes ship free.',
         image: '/images/hero/hero0.jpg',
         imageAlt: 'Athlete ready for the game',
       },

@@ -184,14 +184,14 @@ export const products: Product[] = [
     // $4.50 single-box shipping is deliberate: 3 boxes crosses the $30
     // free-shipping threshold, which is the bundle nudge doing its job.
     shippingCost: 4.5,
-    description: 'Drug-free nasal strips that gently lift your nasal passages open for easier breathing during sleep, training, and game day. Skin-toned, quiet, and made to stay on through the night. 44 clear strips per box — six weeks of better nights.',
+    description: 'Breathe better anytime, anywhere. Extra-strength, drug-free nasal strips with flexible spring-like bands that open your nasal passages — for sleep, exercise, and travel. 44 clear strips per box: six weeks of better nights.',
     features: [
-      'Opens nasal passages instantly — no drugs, no devices',
-      'Sweat-resistant adhesive holds all night and through workouts',
-      'Skin-toned and low profile — barely visible on',
-      'One size fits most, for men and women',
-      '44 strips per box — six weeks of nights',
-      'Latex-free adhesive, gentle on skin',
+      'Flexible, spring-like bands open nasal passages',
+      'Extra strength — made for exercise and travel',
+      'Drug free: nothing to take, nothing inside your nose',
+      'Clear and discreet — barely visible on',
+      'Easy removal, designed for sensitive skin',
+      'One size fits most · 44 strips per box',
     ],
     whatsIncluded: ['44 individually wrapped clear nasal strips'],
     hasColors: false,
