@@ -104,7 +104,17 @@ export const ProductDetail = () => {
             {product.shippingCost === 0 ? (
               <p className="text-success font-semibold mt-2">Free Shipping</p>
             ) : (
-              <p className="text-gray-600 mt-2">+ {formatCurrency(product.shippingCost)} shipping</p>
+              <p className="text-gray-600 mt-2">
+                + {formatCurrency(product.shippingCost)} shipping ·{' '}
+                <span className="font-semibold text-success">
+                  orders over $30 ship FREE
+                </span>
+              </p>
+            )}
+            {product.id === 'breathing-strips' && (
+              <p className="mt-2 inline-block rounded-md bg-green-50 px-2 py-1 text-sm font-semibold text-green-800">
+                $0.27 per strip — vs $0.39 for the leading brand
+              </p>
             )}
           </div>
 
@@ -159,6 +169,24 @@ export const ProductDetail = () => {
                 Go to Cart
               </Button>
             </Link>
+            <p className="text-center text-xs text-gray-500">
+              🔒 Secure Stripe checkout · 30-day money back · Ships from the USA in 2–7 days
+            </p>
+          </div>
+
+          {/* Sticky mobile buy bar: feed traffic decides in seconds — the
+              price and the button must never be off-screen. */}
+          <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t border-gray-200 bg-white px-4 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] lg:hidden">
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold">{product.name}</p>
+              <p className="text-lg font-bold">{formatCurrency(product.price)}</p>
+            </div>
+            <button
+              onClick={handleAddToCart}
+              className="shrink-0 rounded-lg bg-brand-black px-5 py-3 font-semibold text-white"
+            >
+              Add to Cart
+            </button>
           </div>
 
           {/* Guarantees */}
