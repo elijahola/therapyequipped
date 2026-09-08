@@ -14,6 +14,7 @@ import { OrderSuccess } from './pages/OrderSuccess';
 import { About } from './pages/About';
 import { Testimonials } from './pages/Testimonials';
 import { NotFound } from './pages/NotFound';
+import { Admin } from './pages/Admin';
 
 /** Fires a PostHog $pageview on every SPA route change. */
 const PageviewTracker = () => {
@@ -41,6 +42,7 @@ function App() {
               <Route path="/success" element={<OrderSuccess />} />
               <Route path="/about" element={<About />} />
               <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </PageLayout>
