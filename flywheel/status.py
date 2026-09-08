@@ -57,10 +57,24 @@ for s in sess:
     if any(w in names.lower() for w in cur['product'].lower().split()[:1]):
         sales_this_product += 1
 
+# Owner rule 2026-09-08: hard $5 cap per product. The adset carries a $5 lifetime
+# budget + ~26h end_time, so Meta stops it on its own; here we decide the verdict.
+ended = False
+try:
+    aset = fb(f"{cur['campaign_id']}/adsets", {'fields': 'end_time'})['data']
+    if aset and aset[0].get('end_time'):
+        et = datetime.datetime.fromisoformat(aset[0]['end_time'])
+        ended = et < datetime.datetime.now(et.tzinfo)
+        print(f"delivery window ends: {aset[0]['end_time']}{'  (ENDED)' if ended else ''}")
+except Exception as e:
+    print('end_time check failed:', e)
+
 print()
 if sales_this_product:
-    print(f"VERDICT: WINNER — {sales_this_product} sale(s) on {cur['product']}. HOLD budget here. Flag owner to consider scaling.")
-elif spend < 3.0:
-    print("VERDICT: WAIT — ads have not meaningfully delivered yet (spend < $3). Do not rotate on a day the ad barely ran.")
+    print(f"VERDICT: WINNER — {sales_this_product} sale(s) on {cur['product']}. HOLD. Flag owner to consider scaling.")
+elif spend >= 4.5 or ended:
+    print(f"VERDICT: ROTATE — ${spend:.2f} of the $5 cap used, window {'ended' if ended else 'nearly spent'}, 0 sales. Launch next product in QUEUE.md.")
+elif spend >= 3.0:
+    print(f"VERDICT: ROTATE — ${spend:.2f} spent, {lpv} LPVs, 0 sales. Enough signal; move on (owner rule: no sale = next product).")
 else:
-    print(f"VERDICT: ROTATE — ${spend:.2f} spent, {lpv} LPVs, 0 sales. Pause this campaign, launch next product in QUEUE.md.")
+    print("VERDICT: WAIT — spend < $3 and window still open. The $5 lifetime cap means it cannot overspend while we wait.")

@@ -69,8 +69,14 @@ targeting = {'geo_locations': {'countries': ['US']}, 'age_min': 25, 'age_max': 6
              'facebook_positions': ['feed'], 'instagram_positions': ['stream']}
 if interest:
     targeting['flexible_spec'] = [{'interests': [interest]}]
+# OWNER RULE (2026-09-08): never spend more than $5 on one product. Enforced at
+# Meta's level: $5 LIFETIME budget + hard end_time ~26h out. No sale in that
+# window -> the campaign is already stopped and the next rotation moves on.
+import datetime
+end_time = (datetime.datetime.now().astimezone() + datetime.timedelta(hours=26)).isoformat()
 adset = post(f'{ACT}/adsets', {'name': f"{cfg['campaign']} - feed US", 'campaign_id': camp['id'],
-                               'daily_budget': 500, 'billing_event': 'IMPRESSIONS',
+                               'lifetime_budget': 500, 'end_time': end_time,
+                               'billing_event': 'IMPRESSIONS',
                                'optimization_goal': 'LANDING_PAGE_VIEWS',
                                'bid_strategy': 'LOWEST_COST_WITHOUT_CAP',
                                'targeting': targeting, 'status': 'ACTIVE'})
