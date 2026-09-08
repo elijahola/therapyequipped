@@ -46,6 +46,26 @@ export default async function handler(req, res) {
       .filter((c) => !['ARCHIVED', 'DELETED'].includes(c.effective_status));
     const active = camps.filter((c) => c.effective_status === 'ACTIVE');
     out.campaigns = camps.slice(0, 25);
+
+    // History: lifetime stats for every TE product-test campaign (past + present),
+    // identified by ledger campaign_ids plus TE naming conventions.
+    const ledgerIds = new Set(
+      (out.ledgerCsv || '').split('\n').slice(1).map((r) => r.split(',')[2]).filter(Boolean)
+    );
+    const testCamps = camps.filter(
+      (c) => ledgerIds.has(c.id) || c.name.startsWith('TE ·') || c.name.includes('_test')
+    );
+    out.history = await Promise.all(testCamps.map(async (c) => {
+      const life = await fb(`${c.id}/insights`, { fields: 'spend,impressions,actions', date_preset: 'maximum' }, token);
+      return {
+        id: c.id, name: c.name, status: c.effective_status, since: c.created_time,
+        spend: parseFloat(life.data?.[0]?.spend || 0),
+        impressions: parseInt(life.data?.[0]?.impressions || 0),
+        clicks: actionCount(life, 'link_click'),
+        lpv: actionCount(life, 'landing_page_view'),
+      };
+    }));
+
     out.active = [];
     for (const c of active) {
       const [life, today] = await Promise.all([

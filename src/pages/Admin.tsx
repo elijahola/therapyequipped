@@ -16,12 +16,17 @@ interface ActiveCampaign {
 interface Order {
   created: number; amount: number; items: string; email: string; name: string;
 }
+interface HistoryRow {
+  id: string; name: string; status: string; since: string;
+  spend: number; impressions: number; clicks: number; lpv: number;
+}
 interface FlywheelData {
   generatedAt: string;
   ledgerCsv: string | null;
   queueMd: string | null;
   campaigns?: { name: string; effective_status: string }[];
   active?: ActiveCampaign[];
+  history?: HistoryRow[];
   orders?: Order[];
   metaError?: string;
   stripeError?: string;
@@ -176,23 +181,37 @@ export const Admin = () => {
 
       {/* History + queue */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <section className="rounded-xl border border-gray-200 p-6">
-          <h2 className="mb-4 text-xl font-bold">Test history</h2>
+        <section className="rounded-xl border border-gray-200 p-6 lg:col-span-2">
+          <h2 className="mb-1 text-xl font-bold">Test history — every product, live ad numbers</h2>
+          <p className="mb-4 text-xs text-gray-500">Spend/impressions/clicks/views pulled live from Meta per campaign.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead><tr className="text-left text-gray-500">
-                <th className="py-2 pr-4">Product</th><th className="py-2 pr-4">Launched</th>
-                <th className="py-2 pr-4">Sales</th><th className="py-2">Verdict</th>
+                <th className="py-2 pr-4">Product</th><th className="py-2 pr-4">Ran</th>
+                <th className="py-2 pr-4 text-right">Spend</th><th className="py-2 pr-4 text-right">Impressions</th>
+                <th className="py-2 pr-4 text-right">Clicks</th><th className="py-2 pr-4 text-right">Landing views</th>
+                <th className="py-2 pr-4 text-right">$/click</th><th className="py-2 pr-4 text-right">Sales</th>
+                <th className="py-2">Verdict</th>
               </tr></thead>
               <tbody>
-                {ledger.map((r, i) => (
-                  <tr key={i} className="border-t border-gray-100">
-                    <td className="py-2 pr-4">{r.product}</td>
-                    <td className="py-2 pr-4 whitespace-nowrap">{r.launch_date}</td>
-                    <td className="py-2 pr-4">{r.sales}</td>
-                    <td className={`py-2 font-semibold ${r.verdict === 'TESTING' ? 'text-green-700' : ''}`}>{r.verdict}</td>
-                  </tr>
-                ))}
+                {ledger.map((r, i) => {
+                  const h = (data?.history || []).find((x) => x.id === r.campaign_id);
+                  const spend = h ? h.spend : parseFloat(r.spend_usd || '0');
+                  const clicks = h?.clicks ?? 0;
+                  return (
+                    <tr key={i} className="border-t border-gray-100">
+                      <td className="py-2 pr-4 font-medium">{r.product}</td>
+                      <td className="py-2 pr-4 whitespace-nowrap">{r.launch_date}{r.end_date ? ` → ${r.end_date}` : ' →'}</td>
+                      <td className="py-2 pr-4 text-right">${spend.toFixed(2)}</td>
+                      <td className="py-2 pr-4 text-right">{h ? h.impressions.toLocaleString() : '—'}</td>
+                      <td className="py-2 pr-4 text-right">{h ? clicks : '—'}</td>
+                      <td className="py-2 pr-4 text-right">{h ? h.lpv : r.lpv || '—'}</td>
+                      <td className="py-2 pr-4 text-right">{clicks > 0 ? `$${(spend / clicks).toFixed(2)}` : '—'}</td>
+                      <td className="py-2 pr-4 text-right">{r.sales}</td>
+                      <td className={`py-2 font-semibold ${r.verdict === 'TESTING' ? 'text-green-700' : 'text-gray-600'}`}>{r.verdict}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
