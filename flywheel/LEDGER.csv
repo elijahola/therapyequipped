@@ -1,4 +1,4 @@
 product,slug,campaign_id,launch_date,end_date,spend_usd,lpv,carts,sales,revenue_usd,verdict
 TE Shop (all products),,120248538966540135,2026-09-03,2026-09-04,9.32,104,,0,0,no sale - superseded by strips test
 Breathing Strips 60ct,breathing-strips,120248566770450135,2026-09-04,2026-09-07,17.29,68,,0,0,no sale - rotated out
-Pickleball Set,pickleball-set,120248600279740135,2026-09-07,,,,,0,0,TESTING
+Pickleball Set,pickleball-set,120248600279740135,2026-09-07,2026-09-08,6.28,14,,0,0,no sale - rotated out ($5 cap exceeded by pacing)

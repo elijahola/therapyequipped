@@ -13,7 +13,7 @@ trademark lookalikes · anything competing with our own TEgun line.
 
 | # | Product | Fulfill hypothesis | COGS est | Sell | Margin est | Status |
 |---|---------|--------------------|----------|------|-----------|--------|
-| 1 | Pickleball set (2 paddles+3 balls+bag) | amazon.com/dp/B09ZWS8Q9G (verified 2026-09-07) | $28.10 | $49.99 | ~$20 | TESTING since 2026-09-07 |
+| 1 | Pickleball set (2 paddles+3 balls+bag) | amazon.com/dp/B09ZWS8Q9G (verified 2026-09-07) | $28.10 | $49.99 | ~$20 | TESTED — no sale, paused 2026-09-08 |
 | 2 | Breathing strips 60ct | amazon.com/dp/B0FYPZP9PH (verified) | $7.10 | $15.99 | ~$8 | TESTED — no sale, paused 2026-09-07 |
 | 3 | Acupressure mat + pillow set | search "acupressure mat pillow set" | ~$22 | $44.99 | ~$18 | QUEUED |
 | 4 | Contoured blackout sleep mask (multi-pack) | search "contoured sleep mask 3 pack" | ~$10 | $24.99 | ~$12 | QUEUED |

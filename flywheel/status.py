@@ -63,7 +63,9 @@ ended = False
 try:
     aset = fb(f"{cur['campaign_id']}/adsets", {'fields': 'end_time'})['data']
     if aset and aset[0].get('end_time'):
-        et = datetime.datetime.fromisoformat(aset[0]['end_time'])
+        # Meta returns "-0500" (no colon); py3.8 fromisoformat needs "-05:00"
+        raw = re.sub(r'([+-]\d{2})(\d{2})$', r'\1:\2', aset[0]['end_time'])
+        et = datetime.datetime.fromisoformat(raw)
         ended = et < datetime.datetime.now(et.tzinfo)
         print(f"delivery window ends: {aset[0]['end_time']}{'  (ENDED)' if ended else ''}")
 except Exception as e:
