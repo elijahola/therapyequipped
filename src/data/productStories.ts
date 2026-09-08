@@ -42,6 +42,30 @@ export const productStories: Record<string, ProductStory> = {
       },
     ],
   },
+  'pickleball-set': {
+    kicker: 'GRAB A FRIEND. FIND A COURT.',
+    headline: 'From the box to your first rally in one afternoon',
+    blocks: [
+      {
+        title: 'Everything is in the bag',
+        body: 'No shopping list, no guesswork. Two paddles, three balls, one bag — the complete kit for two players. Text a friend, throw it in the trunk, and head to the nearest park court. Most towns have free ones; many are converted tennis courts.',
+        image: '/images/products/pickleball-set/main.png',
+        imageAlt: 'Complete pickleball set: two paddles, three balls, and carry bag',
+      },
+      {
+        title: 'Your first rally comes faster than you think',
+        body: 'Pickleball is the easiest racquet sport to pick up — most people are rallying within ten minutes. The graphite face gives you control on soft shots and real pop when you swing, and at 7.25 oz the paddle never tires your wrist. Loser buys coffee.',
+        image: '/images/products/pickleball-set/play.png',
+        imageAlt: 'Player on an outdoor court hitting with the red paddle',
+      },
+      {
+        title: 'The set that keeps getting you out of the house',
+        body: 'The heavy-duty bag lives in your car so a game can break out anywhere: a weeknight hour with your partner, doubles with the neighbors using their pair, family visits where somebody finally beats their sibling at something. High-visibility balls work indoors and out, day or dusk.',
+        image: '/images/products/pickleball-set/bag.png',
+        imageAlt: 'Carrying the zipped pickleball bag to the court',
+      },
+    ],
+  },
   'tegun-lite': {
     kicker: 'BUILT FOR THE GO',
     headline: 'Recovery that fits your life, not the other way around',

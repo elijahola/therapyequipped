@@ -212,6 +212,43 @@ id: 'breathing-strips',
     },
     category: 'breathing',
   },
+  {
+    id: 'pickleball-set',
+    name: 'Pickleball Set — 2 Paddles, 3 Balls & Carry Bag',
+    slug: 'pickleball-set',
+    price: 49.99,
+    shippingCost: 0, // Free shipping — margin carries it at this AOV
+    description: 'Everything two people need to play their first game this weekend. Two USAPA-approved graphite-face paddles with a lightweight polymer honeycomb core (7.25 oz), three high-visibility balls for indoor and outdoor courts, and a heavy-duty carry bag that keeps it all together. Grab a friend, find a court, and you’re playing in minutes.',
+    features: [
+      '2 USAPA-approved paddles — graphite carbon fiber face for power and spin control',
+      'Lightweight polymer honeycomb core, 7.25 oz — easy on the wrist for long sessions',
+      'Soft cushion non-slip grip stays comfortable through extended play',
+      '3 high-visibility balls for indoor and outdoor courts, in most light conditions',
+      'Heavy-duty carry bag fits paddles and balls — car trunk to court',
+      'Complete set for all skill levels: unbox and play the same day',
+    ],
+    whatsIncluded: [
+      '2 pickleball paddles (red + blue)',
+      '3 high-visibility pickleballs (indoor/outdoor)',
+      'Heavy-duty carry bag',
+    ],
+    hasColors: false,
+    images: {
+      main: `/images/products/pickleball-set/main.png`,
+      lifestyle: [
+        `/images/products/pickleball-set/play.png`,
+        `/images/products/pickleball-set/bag.png`,
+      ],
+      details: [
+        `/images/products/pickleball-set/materials.png`,
+        `/images/products/pickleball-set/usapa.png`,
+        `/images/products/pickleball-set/balls.png`,
+        `/images/products/pickleball-set/specs.png`,
+      ],
+      whatsIncluded: `/images/products/pickleball-set/main.png`,
+    },
+    category: 'pickleball',
+  },
 ];
 
 // Helper functions
